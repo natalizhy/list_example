@@ -1,0 +1,8 @@
+{
+  "db": {
+    "AddrMysql": "localhost",
+    "UserMysql": "root",
+    "PasswordMysql": "",
+    "Database": "Advertising"
+  }
+}

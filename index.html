@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script>
+    $(document).ready(function () {
+
+        // Delete
+        $('.delete').click(function () {
+            var el = this;
+            var id = this.id;
+            var splitid = id.split("_");
+
+            // Delete id
+            var deleteid = splitid[1];
+
+            // AJAX Request
+            $.ajax({
+                url: 'remove.php',
+                type: 'POST',
+                data: {id: deleteid},
+                success: function (response) {
+
+                    if (response === 1) {
+                        // Remove row from HTML Table
+                        $(el).closest('tr').css('background', 'tomato');
+                        $(el).closest('tr').fadeOut(800, function () {
+                            $(this).remove();
+                            alert('good');
+
+                        });
+                    } else {
+                        alert('Invalid ID.');
+                    }
+
+                }
+            })
+            });
+
+        });
+</script>
+<body>
+
+<div class='container'>
+    <table border='1'>
+        <tr style='background: whitesmoke;'>
+            <th>S.no</th>
+            <th>Title</th>
+            <th>Operation</th>
+        </tr>
+
+        <tr>
+            <td align='center'>1</td>
+            <td><a href='link'>link</a></td>
+            <td align='center'>
+                <span class='delete' id='del_1'>Delete</span>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+</body>
+</html>
